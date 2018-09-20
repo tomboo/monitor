@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Weights</h2>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Date</th>
+            <th>Weight</th>
+        </tr>
+        {% for entry in dataset %}
+            <tr>
+                <td>{{ entry.date }}</td>
+                <td>{{ entry.weight }}</td>
+            </tr>
+        {% endfor %}
+    </tb>
+{% endblock %}
