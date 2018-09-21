@@ -1,17 +1,30 @@
-{% extends "base_generic.html" %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Monitor</title>
+</head>
+<body>
+  <a href="{% url 'index' %}">Return to homepage</a>
+  <div id="container" data-url="{% url 'weights_data' %}">
+      <p>Chart</p>
+  </div>
 
-{% block content %}
-    <h2>Weights</h2>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Date</th>
-            <th>Weight</th>
-        </tr>
-        {% for entry in dataset %}
-            <tr>
-                <td>{{ entry.date }}</td>
-                <td>{{ entry.weight }}</td>
-            </tr>
-        {% endfor %}
-    </tb>
-{% endblock %}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+  <script src="https://code.highcharts.com/stock/indicators/ema.js"></script>
+
+  <script>
+    $.ajax({
+      url: $("#container").attr("data-url"),
+      dataType: "json",
+      success: function (data) {
+        Highcharts.stockChart("container", data);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -28,45 +28,54 @@ def index(request):
 
 
 def weights(request):
+    return render(request, 'weights.html')
+
+
+def weights_data(request):
     user = User.objects.get(username='Tom')
     dataset = Weight.objects\
         .values('date', 'weight')\
         .filter(user_id=user.id)\
         .order_by('date')
-    print(dataset)
-    context = {
-        'dataset': dataset,
-    }
-    return render(request, 'weights.html', context=context)
-
-
-def json_example(request):
-    return render(request, 'json_example.html')
-
-
-def chart_data(request):
-    user = User.objects.get(username='Tom')
-    dataset = Weight.objects\
-        .values('date', 'weight')\
-        .filter(user_id=user.id)\
-        .order_by('date')
-    print(dataset)
-    for row in dataset:
-        print(timestamp(row['date']), row['weight'])
+    data = list(
+        map(
+            lambda row: [timestamp(row['date']), row['weight']],
+            dataset
+        )
+    )
 
     chart = {
         'rangeSelector': {
             'selected': 1
         },
+
         'title': {
             'text': 'Weight Chart'
         },
+
+        'legend': {
+            'enabled': True
+        },
+
+        'plotOptions': {
+            'series': {
+                'showInLegend': True
+            }
+        },
+
         'series': [{
+            'id': 'weight',
             'name': 'Weight',
             'tooltip': {
                 'valueDecimals': 2
             },
-            'data': list(map(lambda row: [timestamp(row['date']), row['weight']], dataset))
+            'data': data
+        }, {
+            'type': 'ema',
+            'linkedTo': 'weight',
+            'params': {
+                'period': 10
+            }
         }]
     }
     print(chart)
