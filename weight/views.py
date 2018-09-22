@@ -78,6 +78,5 @@ def weights_data(request):
             }
         }]
     }
-    print(chart)
 
     return JsonResponse(chart)

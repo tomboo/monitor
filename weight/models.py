@@ -9,7 +9,7 @@ class Weight(models.Model):
     # Fields
     date = models.DateField(default=timezone.now)
     weight = models.FloatField()
-    body_fat = models.FloatField()
+    body_fat = models.FloatField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Metadata
