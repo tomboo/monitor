@@ -15,14 +15,12 @@ WEIGHT = 1
 def add_weights(apps, schema_editor):
     Weight = apps.get_model('weight', 'Weight')
     user = User.objects.get(username='Tom')
-    print('\n***', user, user.username)
     dataset_file = os.path.join(settings.BASE_DIR, 'data/data.csv')
 
     with open(dataset_file) as dataset:
         reader = csv.reader(dataset)
         next(reader)  # ignore first row (headers)
         for entry in reader:
-            print('***', user.username, entry[DATE])
             Weight.objects.create(
                 date=datetime.strptime(entry[DATE], '%Y-%m-%d').date(),
                 weight=float(entry[WEIGHT]),
