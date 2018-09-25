@@ -19,8 +19,13 @@ def index(request):
     # The 'all()' is implied by default.
     num_weights = Weight.objects.count()
 
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     context = {
         'num_weights': num_weights,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
