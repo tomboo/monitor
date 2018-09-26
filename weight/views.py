@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from weight.models import Weight
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
+from .models import Weight
 from datetime import datetime
 
 
@@ -32,15 +32,17 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
+@login_required
 def weights(request):
     return render(request, 'weights.html')
 
 
+@login_required
 def weights_data(request):
-    user = User.objects.get(username='Tom')
+    # user = User.objects.get(username='Tom')
     dataset = Weight.objects\
         .values('date', 'weight')\
-        .filter(user_id=user.id)\
+        .filter(user_id=request.user.id)\
         .order_by('date')
     data = list(
         map(
