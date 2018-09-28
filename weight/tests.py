@@ -10,6 +10,7 @@ password = 'password1'
 
 
 class ModelsTestCase(TestCase):
+
     @classmethod
     def setUpTestData(cls):
         ''' Run once to set up non-modified data for all class methods.
@@ -35,7 +36,7 @@ class ModelsTestCase(TestCase):
         response = self.client.get(reverse('weights'))
         self.assertEqual(response.status_code, 302)
 
-        # Logged in
+        # @login_required
         login = self.client.login(username=username, password=password)
         response = self.client.get(reverse('weights'))
         self.assertEqual(response.status_code, 200)
