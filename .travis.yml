@@ -5,3 +5,7 @@ install:
     - pip install -r requirements.txt
 script:
     - python manage.py test
+deploy:
+    provider: heroku
+    app: tb-monitor
+    api_key: $HEROKU_AUTH_TOkEN
