@@ -2,9 +2,12 @@
 
 {% block content %}
   <h1>Monitor Home</h1>
-  <p>Welcome to Monitor!</p>
+  <p>
+      Django application to monitor various metrics
+      (e.g. weight, daily habits, etc.)
+  </p>
   <h2>Dynamic content</h2>
-  <p>The library has the following record counts:</p>
+  <p>The database contains the following record counts:</p>
   <ul>
     <li><strong>Weights:</strong> {{ num_weights }}</li>
     <li><strong>Visits:</strong> {{ num_visits }}</li>
