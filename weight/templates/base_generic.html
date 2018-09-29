@@ -16,6 +16,9 @@
       {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
+          {% if user.is_staff %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+          {% endif %}
         </ul>
 
         <ul>
