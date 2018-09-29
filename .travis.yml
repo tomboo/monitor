@@ -1,11 +1,12 @@
 language: python
 python:
-    - 3.6
+- 3.6
 install:
-    - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-    - python manage.py test
+- python manage.py test
 deploy:
-    provider: heroku
-    app: tb-monitor
-    api_key: $HEROKU_AUTH_TOkEN
+  provider: heroku
+  app: tb-monitor
+  api_key:
+    secure: qQrwJkIZV+Z+c3B7xwapgehTFTAQpyGkH8OxQ/EG9/jr2ojf5pLIphXGrTr2I817RTtUbDJKeWvARRLbPGI4azDLNGirbc33NRDl8/yRPyYfZSu9AnQZ/wtXzRA8e8N793i9lJF/HfFLbNEhTHt4qx83UGrT0jMWGVOYbNBN6L8P9ffLlmEFupz6rLTdCKgDEM1pmQEjWAnwv2Tc0cXo8RNJIfgNDzNrBMXdVVgE+CZr5f5ybjlJkFHEaXI/A1P4i2rCL6PBEm01Vf+COWvXR44Biic9NAET/k4jpPg1G6uK5w5SdRpU6D/apEckopaKKL4qnqmi0uY5vCG336he8x787aRSpHPHCqxJ3wcOT14fCN6BCx8sBA6QaWLHpjB+BadcZdHXklukCnUu/zDpTbw95szEfbsdi1OxwV8nJFFjnuOcpv/HiUwx8FlSEb9qSBMlA1TuSsxNN9YE6Jfi12wdDSydw6OXqUWsSKY5dkXBLB2AuCKYzePurOXzM+sbhqdezdh2YRbU2zA6evCw2ywEeZWVCzmHeLVQGDuiz0iRASu0Jgp+EYY8EHtNRKr3fKM3btAO4574jIYISI+IwRzZ/BEG9IoDQ0N2mnO4X1t1rDBXg861oJQ3x5ivWggzaK0WdbFwcFbHfGctYuiaYRHfdIVRKck2TQV4Hiz/Huc=
